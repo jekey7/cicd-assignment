@@ -15,6 +15,8 @@ Docker Compose를 사용해 PHP 애플리케이션과 MySQL 데이터베이스�
 - MySQL
 - Docker
 - Docker Compose
+- Prometheus
+- Grafana
 - GitHub Actions
 - Docker Hub
 
@@ -25,7 +27,14 @@ Docker Compose를 사용해 PHP 애플리케이션과 MySQL 데이터베이스�
 ├── Dockerfile
 ├── docker-compose.yml
 ├── mysql/
-│   └── init.sql
+│   ├── init.sql
+│   └── exporter.cnf
+├── prometheus/
+│   └── prometheus.yml
+├── grafana/
+│   ├── dashboards/
+│   │   └── mysql-overview.json
+│   └── provisioning/
 ├── .github/
 │   └── workflows/
 │       └── docker-image.yml
@@ -98,13 +107,13 @@ docker rm -f cicd-assignment-test
 
 ## Docker Compose 실행
 
-PHP 애플리케이션과 MySQL 데이터베이스를 함께 실행합니다.
+PHP 애플리케이션, MySQL 데이터베이스, Prometheus, Grafana를 함께 실행합니다.
 
 ```powershell
 docker compose up --build
 ```
 
-브라우저에서 접속합니다.
+웹 애플리케이션:
 
 ```text
 http://localhost:8080/login.html
@@ -117,6 +126,27 @@ ID: admin
 PW: admin123
 ```
 
+Prometheus:
+
+```text
+http://localhost:9090
+```
+
+Grafana:
+
+```text
+http://localhost:3000
+```
+
+Grafana 기본 로그인:
+
+```text
+ID: admin
+PW: admin
+```
+
+Grafana에는 Prometheus datasource와 `MySQL Overview` 대시보드가 자동 등록됩니다.
+
 컨테이너 종료:
 
 ```powershell
@@ -127,6 +157,39 @@ DB 볼륨까지 초기화:
 
 ```powershell
 docker compose down -v
+```
+
+## 모니터링 구성
+
+Docker Compose에는 모니터링용 컨테이너가 포함되어 있습니다.
+
+- `mysql-exporter`: MySQL 상태를 Prometheus 메트릭으로 노출
+- `prometheus`: 메트릭 수집
+- `grafana`: 대시보드 시각화
+
+Prometheus scrape 설정 파일:
+
+```text
+prometheus/prometheus.yml
+```
+
+Grafana datasource 설정:
+
+```text
+grafana/provisioning/datasources/prometheus.yml
+```
+
+Grafana dashboard 설정:
+
+```text
+grafana/dashboards/mysql-overview.json
+```
+
+MySQL exporter 계정은 `mysql/init.sql`에서 생성됩니다. 기존 Docker volume이 이미 만들어져 있다면 아래 명령으로 DB를 초기화한 뒤 다시 실행해야 exporter 계정이 생성됩니다.
+
+```powershell
+docker compose down -v
+docker compose up --build
 ```
 
 ## Docker Hub 이미지

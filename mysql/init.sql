@@ -9,3 +9,7 @@ CREATE TABLE IF NOT EXISTS member (
 INSERT INTO member (user_id, user_pw, user_name, user_email, user_reg_datetime)
 VALUES ('admin', 'admin123', 'Admin', 'admin@example.com', NOW())
 ON DUPLICATE KEY UPDATE user_id = user_id;
+
+CREATE USER IF NOT EXISTS 'exporter'@'%' IDENTIFIED BY 'exporter_password' WITH MAX_USER_CONNECTIONS 3;
+GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'exporter'@'%';
+FLUSH PRIVILEGES;
