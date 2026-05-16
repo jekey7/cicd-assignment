@@ -10,7 +10,7 @@ $stmt->execute([$id, $pw]);
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($row) {
-    header("Location: http://127.0.0.1/admin_users.php");
+    header("Location: ./admin_users.php");
     exit;
 }
 ?>

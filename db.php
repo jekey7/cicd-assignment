@@ -1,9 +1,9 @@
 <?php
 
-$host = "localhost";
-$dbname = "my_site";
-$username = "root";
-$password = "";
+$host = getenv("DB_HOST") ?: "localhost";
+$dbname = getenv("DB_NAME") ?: "my_site";
+$username = getenv("DB_USER") ?: "root";
+$password = getenv("DB_PASS") ?: "";
 
 try {
     $pdo = new PDO(
