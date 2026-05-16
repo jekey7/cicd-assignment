@@ -4,8 +4,8 @@
 
 이 프로젝트는 2026년 하계 글로벌 교육 프로그램 특강에서 진행하는 회원 관리 웹 제작 프로젝트입니다.
 
-1주차: PHP, HTML, CSS, JavaScript로 웹 제작
-2주차: Docker와 GitHub Actions를 통한 CI/CD 파이프라인을 구성
+- 1주차: PHP, HTML, CSS, JavaScript로 웹 제작
+- 2주차: Docker와 GitHub Actions를 통한 CI/CD 파이프라인을 구성
 
 ## 사용 기술
 
