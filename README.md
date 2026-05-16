@@ -1,10 +1,11 @@
-# CI/CD Assignment
+# 2026년 하계 글로벌 교육 프로그램 특강
 
 ## 프로젝트 설명
 
-이 프로젝트는 PHP, HTML, CSS, JavaScript로 구성된 회원 관리 웹 프로젝트입니다. Docker를 사용해 애플리케이션을 컨테이너 이미지로 패키징하고, GitHub Actions를 통해 Docker Hub에 자동 배포하는 CI/CD 파이프라인을 구성했습니다.
+이 프로젝트는 2026년 하계 글로벌 교육 프로그램 특강에서 진행하는 회원 관리 웹 제작 프로젝트입니다.
 
-Docker Compose를 사용해 PHP 애플리케이션과 MySQL 데이터베이스를 함께 실행할 수 있습니다.
+1주차: PHP, HTML, CSS, JavaScript로 웹 제작
+2주차: Docker와 GitHub Actions를 통한 CI/CD 파이프라인을 구성
 
 ## 사용 기술
 
@@ -19,6 +20,7 @@ Docker Compose를 사용해 PHP 애플리케이션과 MySQL 데이터베이스�
 - Grafana
 - GitHub Actions
 - Docker Hub
+- Trivy
 
 ## 프로젝트 구조
 
@@ -218,7 +220,21 @@ Workflow는 `main` 브랜치에 push될 때 실행됩니다.
 - Docker Hub 로그인
 - Docker Buildx 설정
 - Docker 이미지 빌드
+- Trivy 보안 스캔
 - Docker Hub 이미지 push
+
+## Trivy 보안 스캔
+
+이 프로젝트는 GitHub Actions에서 Docker 이미지를 빌드한 뒤 Trivy를 사용해 컨테이너 이미지 취약점을 검사합니다.
+
+Workflow는 Docker Hub에 이미지를 push하기 전에 GitHub Actions runner에서 로컬로 빌드된 이미지를 먼저 스캔합니다. `CRITICAL` 등급 취약점이 발견되면 workflow가 실패하도록 설정했습니다.
+
+```yaml
+exit-code: 1
+severity: CRITICAL
+```
+
+이 설정을 통해 심각도가 높은 취약점이 포함된 이미지는 Docker Hub에 배포되지 않도록 차단합니다.
 
 ## GitHub Actions
 
@@ -241,15 +257,11 @@ jaekyup/cicd-assignment:latest
 jaekyup/cicd-assignment:<git-commit-sha>
 ```
 
+Workflow는 이미지 빌드 후 Trivy 스캔을 수행하고, 스캔을 통과한 경우에만 Docker Hub에 이미지를 push합니다.
+
 GitHub Secrets:
 
 ```text
 DOCKERHUB_USERNAME
 DOCKERHUB_TOKEN
 ```
-
-## 제출 자료
-
-- Docker Hub 이미지 링크: https://hub.docker.com/r/jaekyup/cicd-assignment
-- GitHub Actions 실행 결과 캡처
-- README.md
