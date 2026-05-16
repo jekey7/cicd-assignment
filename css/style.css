@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Patrick+Hand&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Patrick Hand', Arial, sans-serif;
+  background-color: #fdfbf7;
+  background-image: radial-gradient(#e5e0d8 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: #2d2d2d;
+}
+
+/* ── 로그인/회원가입/회원수정 레이아웃 ── */
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  border: 3px solid #2d2d2d;
+  box-shadow: 6px 6px 0px 0px #2d2d2d;
+  transform: rotate(-0.5deg);
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-family: 'Kalam', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: #2d2d2d;
+}
+
+.desc {
+  margin: 0 0 24px;
+  color: #2d2d2d;
+  opacity: 0.6;
+  font-size: 15px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: 'Patrick Hand', Arial, sans-serif;
+  color: #2d2d2d;
+}
+
+input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border: 2px solid #2d2d2d;
+  border-radius: 15px 255px 15px 225px / 225px 15px 255px 15px;
+  font-size: 15px;
+  font-family: 'Patrick Hand', Arial, sans-serif;
+  background: #ffffff;
+  color: #2d2d2d;
+  transition: border-color 0.1s, box-shadow 0.1s;
+}
+
+input::placeholder {
+  color: rgba(45, 45, 45, 0.4);
+}
+
+input:focus {
+  outline: none;
+  border-color: #2d5da1;
+  box-shadow: 0 0 0 3px rgba(45, 93, 161, 0.15);
+}
+
+input[readonly] {
+  background: #e5e0d8;
+  cursor: not-allowed;
+}
+
+.btn {
+  width: 100%;
+  height: 48px;
+  border: 3px solid #2d2d2d;
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  background: #ffffff;
+  color: #2d2d2d;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Patrick Hand', Arial, sans-serif;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px 0px #2d2d2d;
+  transition: background 0.1s, color 0.1s, box-shadow 0.1s, transform 0.1s;
+}
+
+.btn:hover {
+  background: #ff4d4d;
+  color: #ffffff;
+  box-shadow: 2px 2px 0px 0px #2d2d2d;
+  transform: translate(2px, 2px);
+}
+
+.btn:active {
+  box-shadow: none;
+  transform: translate(4px, 4px);
+}
+
+.link-text {
+  margin: 20px 0 0;
+  text-align: center;
+  font-size: 15px;
+}
+
+a {
+  color: #2d5da1;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline wavy #ff4d4d;
+}
+
+/* ── 관리자 페이지 레이아웃 ── */
+.admin-page {
+  min-height: 100vh;
+  padding: 40px 24px;
+}
+
+.admin-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 15px 255px 15px 225px / 225px 15px 255px 15px;
+  border: 3px solid #2d2d2d;
+  box-shadow: 8px 8px 0px 0px #2d2d2d;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 2px dashed #2d2d2d;
+}
+
+.small-link {
+  padding: 10px 16px;
+  border-radius: 225px 15px 255px 15px / 15px 255px 15px 225px;
+  background: #e5e0d8;
+  font-size: 14px;
+  font-family: 'Patrick Hand', Arial, sans-serif;
+  border: 2px solid #2d2d2d;
+  box-shadow: 3px 3px 0px 0px #2d2d2d;
+  transition: background 0.1s, color 0.1s, box-shadow 0.1s, transform 0.1s;
+}
+
+.small-link:hover {
+  background: #2d5da1;
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: 1px 1px 0px 0px #2d2d2d;
+  transform: translate(2px, 2px);
+}
+
+.member-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+.member-table th,
+.member-table td {
+  padding: 14px;
+  border-bottom: 1px dashed #e5e0d8;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Patrick Hand', Arial, sans-serif;
+}
+
+.member-table th {
+  background: #fdfbf7;
+  font-family: 'Kalam', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  border-bottom: 2px solid #2d2d2d;
+}
+
+.member-table tr:hover td {
+  background: rgba(255, 249, 196, 0.4);
+}
+
+.table-btn {
+  border: 2px solid #2d2d2d;
+  padding: 6px 12px;
+  border-radius: 225px 15px 255px 15px / 15px 255px 15px 225px;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: 'Patrick Hand', Arial, sans-serif;
+  font-weight: bold;
+  box-shadow: 2px 2px 0px 0px #2d2d2d;
+  transition: box-shadow 0.1s, transform 0.1s, background 0.1s, color 0.1s;
+}
+
+.table-btn:hover {
+  box-shadow: 1px 1px 0px 0px #2d2d2d;
+  transform: translate(1px, 1px);
+}
+
+.table-btn:active {
+  box-shadow: none;
+  transform: translate(2px, 2px);
+}
+
+.table-btn.edit {
+  background: #e5e0d8;
+  color: #2d2d2d;
+}
+
+.table-btn.edit:hover {
+  background: #2d5da1;
+  color: #ffffff;
+}
+
+.table-btn.delete {
+  background: #ffffff;
+  color: #2d2d2d;
+}
+
+.table-btn.delete:hover {
+  background: #ff4d4d;
+  color: #ffffff;
+}
+
+@media (max-width: 700px) {
+  .card {
+    transform: none;
+  }
+
+  .admin-header {
+    flex-direction: column;
+  }
+
+  .member-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
